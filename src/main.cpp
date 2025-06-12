@@ -6,7 +6,7 @@ namespace Hooks
 		static void FString(UE::FString* a_this, const UE::FString& a_that)
 		{
 			using func_t = decltype(&FString);
-			static REL::Relocation<func_t> func{ REL::Offset(0x0D820A0) };
+			static REL::Relocation<func_t> func{ REL::ID(105921) };
 			return func(a_this, a_that);
 		}
 
@@ -21,7 +21,7 @@ namespace Hooks
 			return _GetFormTypeString(a_this, a_string);
 		}
 
-		inline static REL::Hook _GetFormTypeString{ REL::Offset(0x4955C10), 0xC6, GetFormTypeString };
+		inline static REL::Hook _GetFormTypeString{ REL::ID(311151), 0xC6, GetFormTypeString };
 	};
 
 	class hkPickRef
@@ -45,24 +45,24 @@ namespace Hooks
 
 		static bool PickRef(
 			const RE::SCRIPT_PARAMETER* a_parameters,
-			const char* a_compiledParams,
-			RE::TESObjectREFR* a_refObject,
-			RE::TESObjectREFR* a_container,
-			RE::Script* a_script,
-			RE::ScriptLocals* a_scriptLocals,
+			const char*                 a_compiledParams,
+			RE::TESObjectREFR*          a_refObject,
+			RE::TESObjectREFR*          a_container,
+			RE::Script*                 a_script,
+			RE::ScriptLocals*           a_scriptLocals,
 			double&,
 			std::uint32_t& a_offset)
 		{
 			RE::TESObjectREFR* pick{ nullptr };
-			auto result = RE::Script::ParseParameters(
-				a_parameters,
-				a_compiledParams,
-				a_offset,
-				a_refObject,
-				a_container,
-				a_script,
-				a_scriptLocals,
-				&pick);
+			auto               result = RE::Script::ParseParameters(
+                a_parameters,
+                a_compiledParams,
+                a_offset,
+                a_refObject,
+                a_container,
+                a_script,
+                a_scriptLocals,
+                &pick);
 
 			if (result && pick && pick->pairingEntry && pick->pairingEntry->hostItem)
 			{
