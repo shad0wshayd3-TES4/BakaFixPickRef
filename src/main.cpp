@@ -6,7 +6,7 @@ namespace Hooks
 		static void FString(UE::FString* a_this, const UE::FString& a_that)
 		{
 			using func_t = decltype(&FString);
-			static REL::Relocation<func_t> func{ REL::Offset(0x0D8E160) };
+			static REL::Relocation<func_t> func{ REL::Offset(0x0D820A0) };
 			return func(a_this, a_that);
 		}
 
@@ -21,7 +21,7 @@ namespace Hooks
 			return _GetFormTypeString(a_this, a_string);
 		}
 
-		inline static REL::Hook _GetFormTypeString{ REL::Offset(0x4977410), 0xC6, GetFormTypeString };
+		inline static REL::Hook _GetFormTypeString{ REL::Offset(0x4955C10), 0xC6, GetFormTypeString };
 	};
 
 	class hkPickRef
@@ -95,7 +95,7 @@ namespace Hooks
 
 		static void Install()
 		{
-			if (auto cmd = RE::SCRIPT_FUNCTION::LocateConsoleCommand("PickRefByID"))
+			if (auto cmd = RE::SCRIPT_FUNCTION::LocateConsoleCommand("PickRefByID"sv))
 			{
 				cmd->executeFunction = PickRef;
 			}
